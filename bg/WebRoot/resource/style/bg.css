@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+.loginContent{
+	color:#4099a5;
+	padding-left:20px;
+	background:url("../images/bg/login_menu_main.png") no-repeat 0px -1px;
+}
+input.login_input{border:#b8d0d6 1px solid;width:30%;height:30px;line-height:30px;padding-left:2px;}
+span.space{display:-moz-inline-box;display:inline-block;width:30px;}
+.main{
+	background-color:hsla(120,65%,75%,0.3);
+}

@@ -1,0 +1,61 @@
+@charset UTF-8;
+.toolbar{background-color:#D6E3F3;width:100%;white-space:nowrap;background:url(../images/toolbar/tab-bg.gif) repeat-x;position:relative;}
+.toolbar .toolbar_disabled{filter:alpha(opacity=60);-moz-opacity:0.6;opacity:0.6;}
+.toolbar .toolbar_disabled *{cursor:no-drop;}
+.toolbar td{vertical-align:middle;}
+.toolbar .spacer{height:17px;font-size:1px;border-left:solid 1px #9AC6FF;border-right:solid 1px #FFF;display:block;margin:0 2px;padding:0;}
+.toolbar .over .b_left{background:url(../images/toolbar/tb_border.gif) no-repeat 0 0;width:3px;}
+.toolbar .over .b_right{background:url(../images/toolbar/tb_border.gif) no-repeat 0 -21px;width:3px;}
+.toolbar .over .b_center{background:url(../images/toolbar/tb_border.gif) repeat-x 0 -42px;}
+.toolbar .b_center a{display:block;vertical-align:middle;padding-top:3px;padding-bottom:4px;margin-left:2px;margin-right:2px;text-decoration:none;white-space:nowrap;height:auto;color:#333;}
+.toolbar .filterTable{position:absolute;right:2px;top:2px;}
+.toolbar .filter-spacer{height:21px;font-size:1px;border-left:solid 1px #84A4CE;border-right:solid 1px #FFF;display:block;margin:0;padding:0;}
+.toolbar .border-center-active{background:url(../images/toolbar/tb_border.gif) repeat-x 0 -105px!important;}
+.toolbar .border-left-active{background:url(../images/toolbar/tb_border.gif) no-repeat 0 -63px!important;}
+.toolbar .border-right-active{background:url(../images/toolbar/tb_border.gif) no-repeat 0 -84px!important;}
+.filter-red{background:transparent url(../images/toolbar/ball_red.gif) no-repeat 2px 2px;width:25px;}
+.filter-yellow{background:transparent url(../images/toolbar/ball_yellow.gif) no-repeat 2px 2px;width:25px;}
+.filter-green{background:transparent url(../images/toolbar/ball_green.gif) no-repeat 2px 2px;width:25px;}
+.new{background:transparent url(../images/toolbar/document-plus.png) no-repeat 0 2px;padding-left:18px;}
+.copy{background:transparent url(../images/toolbar/copy.gif) no-repeat 0 2px;padding-left:20px;}
+.view{background:transparent url(../images/toolbar/folder.gif) no-repeat 0 2px;padding-left:20px;}
+.edit{background:transparent url(../images/toolbar/document-pencil.png) no-repeat 0 2px;padding-left:20px;}
+.save{background:transparent url(../images/toolbar/save.gif) no-repeat 0 2px;padding-left:20px;}
+.cancel{background:transparent url(../images/toolbar/cancel.gif) no-repeat 0 2px;padding-left:20px;}
+.delete{background:transparent url(../images/toolbar/document-delete.png) no-repeat 0 2px;padding-left:20px;}
+.refresh{background:transparent url(../images/toolbar/refresh.png) no-repeat 0 2px;padding-left:20px;}
+.lock{background:transparent url(../images/toolbar/locked.png) no-repeat 0 2px;padding-left:20px;}
+.unlocked{background:transparent url(../images/toolbar/unlocked.png) no-repeat 0 2px;padding-left:20px;}
+.print{background:transparent url(../images/toolbar/printer-pencil.png) no-repeat 0 2px;padding-left:20px;}
+.search{background:transparent url(../images/toolbar/search.gif) no-repeat 0 2px;padding-left:20px;}
+.info{background:transparent url(../images/toolbar/info.gif) no-repeat 0 2px;padding-left:20px;}
+.submit{background:transparent url(../images/toolbar/submit.gif) no-repeat 0 2px;padding-left:20px;}
+.help{background:transparent url(../images/toolbar/help.gif) no-repeat 0 2px;padding-left:20px;}
+.attach{background:transparent url(../images/toolbar/attach.gif) no-repeat 0 2px;padding-left:20px;}
+.sure{background:transparent url(../images/toolbar/sure.gif) no-repeat 0 2px;padding-left:20px;}
+.find{background:transparent url(../images/toolbar/find.gif) no-repeat 0 2px;padding-left:20px;}
+.audit{background:transparent url(../images/toolbar/audit.png) no-repeat 0 2px;padding-left:20px;}
+.xls{background:transparent url(../images/toolbar/exl.gif) no-repeat 0 2px;padding-left:20px;}
+.domain{background:transparent url(../images/toolbar/object.gif) no-repeat 0 2px;padding-left:20px;}
+.move{background:transparent url(../images/toolbar/move.gif) no-repeat 0 2px;padding-left:20px;}
+.open{background:transparent url(../images/toolbar/open.gif) no-repeat 0 2px;padding-left:20px;}
+.chongzhi{background:transparent url(../images/toolbar/address-book.gif) no-repeat 0 2px;padding-left:20px;}
+.export{background:transparent url(../images/toolbar/document-export.png) no-repeat 0 2px;padding-left:20px;}
+.import{background:transparent url(../images/toolbar/document-import.png) no-repeat 0 2px;padding-left:20px;}
+.preferences{background:transparent url(../images/toolbar/preferences.gif) no-repeat 0 2px;padding-left:20px;}
+.arrowup{background:transparent url(../images/toolbar/arrow_up.png) no-repeat 0 2px;padding-left:20px;}
+.arrowdown{background:transparent url(../images/toolbar/arrow_down.png) no-repeat 0 2px;padding-left:20px;}
+.arrowleft{background:transparent url(../images/toolbar/arrow_left.png) no-repeat 0 2px;padding-left:20px;}
+.arrowright{background:transparent url(../images/toolbar/arrow_right.png) no-repeat 0 2px;padding-left:20px;}
+.chart{background:transparent url(../images/toolbar/chart.gif) no-repeat 0 2px;padding-left:20px;}
+.tools{background:transparent url(../images/toolbar/large_icons.gif) no-repeat 0 2px;padding-left:20px;}
+.admin{background:transparent url(../images/toolbar/adim.gif) no-repeat 0 2px;padding-left:20px;}
+.paste{background:transparent url(../images/toolbar/paste.gif) no-repeat 0 2px;padding-left:20px;}
+.word{background:transparent url(../images/toolbar/document-word.png) no-repeat 0 2px;padding-left:20px;}
+.wizard{background:transparent url(../images/toolbar/wizard.gif) no-repeat 0 2px;padding-left:20px;}
+.columns{background:transparent url(../images/toolbar/columns.png) no-repeat 0 2px;padding-left:20px;}
+.UnChecked{width:13px;height:13px;background:url(../images/toolbar/CheckBox_UnChecked.gif) no-repeat;list-style:none;}
+.Checked{width:13px;height:13px;background:url(../images/toolbar/CheckBox_Checked.gif) no-repeat;list-style:none;}
+.UnKnown{width:13px;height:13px;background:url(../images/toolbar/CheckBox_UnKnown.gif) no-repeat;list-style:none;}
+.toolbar .button_table,.toolbar .filterTable tr,td,a{cursor:pointer;}
+.toolbar .b_left,.toolbar .b_right{width:3px;}

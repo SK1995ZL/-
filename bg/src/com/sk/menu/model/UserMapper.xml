@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sk.menu.model.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.sk.menu.model.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="kind_id" property="kindId" jdbcType="INTEGER" />
+    <result column="token" property="token" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="post" property="post" jdbcType="VARCHAR" />
+    <result column="mailing_addr" property="mailingAddr" jdbcType="VARCHAR" />
+    <result column="wechat" property="wechat" jdbcType="VARCHAR" />
+    <result column="card" property="card" jdbcType="VARCHAR" />
+    <result column="card_pic" property="cardPic" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="office_addr" property="officeAddr" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="corporate_name" property="corporateName" jdbcType="VARCHAR" />
+    <result column="corporate_landline" property="corporateLandline" jdbcType="VARCHAR" />
+    <result column="corporate_mobile" property="corporateMobile" jdbcType="VARCHAR" />
+    <result column="corporate_card" property="corporateCard" jdbcType="VARCHAR" />
+    <result column="corporate_pic" property="corporatePic" jdbcType="VARCHAR" />
+    <result column="business_pic" property="businessPic" jdbcType="VARCHAR" />
+    <result column="tax_pic" property="taxPic" jdbcType="VARCHAR" />
+    <result column="organization_pic" property="organizationPic" jdbcType="VARCHAR" />
+    <result column="other_pic" property="otherPic" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="kind_name" property="kindName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, nickname, kind_id, token, mobile, email, post, mailing_addr, wechat, card, card_pic, 
+    company_name, office_addr, fax, corporate_name, corporate_landline, corporate_mobile, 
+    corporate_card, corporate_pic, business_pic, tax_pic, organization_pic, other_pic, 
+    password,(select name from bg_user_kind where bg_user_kind.id=bg_user.kind_id) kind_name
+  </sql>
+  <select id="selectUserByNickNameAndPassword" parameterType="com.sk.menu.model.User" resultMap="BaseResultMap">
+     select <include refid="Base_Column_List"/>  from bg_user where nickname=#{nickname,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
+  </select> 
+  <select id="selectUserCountByNickName" parameterType="java.lang.String" resultMap="BaseResultMap">
+     select count(1) from bg_user where nickname=#{nickname,jdbcType=VARCHAR}
+  </select> 
+  <insert id="insert" parameterType="com.sk.menu.model.User" >
+    insert into bg_user (nickname, kind_id,
+      mobile, email, post, 
+      mailing_addr, password)
+    values (#{nickname,jdbcType=VARCHAR}, 
+            #{kindId,jdbcType=INTEGER},
+            #{mobile,jdbcType=VARCHAR},
+            #{email,jdbcType=VARCHAR}, 
+            #{post,jdbcType=VARCHAR}, 
+            #{mailingAddr,jdbcType=VARCHAR}, 
+            #{password,jdbcType=VARCHAR}
+            )
+  </insert>
+</mapper>

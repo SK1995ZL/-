@@ -1,0 +1,184 @@
+*{margin:0;padding:0;}
+.fullBg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+}
+
+body{background:#d5e4f2}
+html {
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+body {
+	margin: 0;
+	font: 12px/1.8 Tahoma, Geneva, '\5B8B\4F53';
+	color: #333;
+}
+input{
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+	outline: none;
+}
+
+ul, ol, li
+p {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a {
+	text-decoration: none;
+	outline: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+button {
+	cursor: pointer;
+}
+button,.button {
+	display: inline-block;
+	height: 38px;
+	padding: 0 15px;
+	line-height: 38px;
+	text-align: center;
+	font-size: 16px;
+	color: #FFF;
+	border: 1px solid #427AC7;
+	background-color: #5091E9;
+	background-image: url(../images/button_x.png);
+	background-repeat: repeat-x;
+	background-position: 0 0;
+}
+button {
+	height: 40px;
+	padding: 0;
+	line-height: normal;
+}
+button:hover,.button:hover {
+	text-decoration: none;
+	background-position: 0 -38px;
+}
+button:active,.button:active {
+	background-position: 0 -76px;
+}
+.container {
+	width: 960px;
+	margin: auto;
+}
+.main {
+	position: relative;
+	height: 500px;
+}
+.login-box {
+	position: absolute;
+	bottom: 10px;
+	right: -10px;
+	width: 414px;
+	height: 393px;
+	background: url(../images/login_box.png) no-repeat 0 0;
+}
+.login-box ul {
+	position: absolute;
+	top: 142px;
+	left: 58px;
+	width: 320px;
+}
+.login-box li {
+	position: relative;
+	height: 60px;
+	vertical-align: middle;
+}
+.login-box label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 3;
+	padding: 0 10px;
+	line-height: 41px;
+	font-size: 14px;
+	color: #999;
+	cursor: text;
+}
+.login-box input {
+	position: relative;
+	z-index: 2;
+	float: left;
+	width: 278px;
+	height: 16px;
+	margin: 0 10px 0 0;
+	padding: 11px 9px;
+	line-height: 16px;
+	font-size: 14px;
+	font-weight: bold;
+	border: 1px solid #B8B8B8;
+}
+.login-box em {
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	z-index: 1;
+	width: 298px;
+	height: 40px;
+	background: #EAEAEA;
+}
+.login-box span {
+	float: left;
+	height: 40px;
+	margin-right: 15px;
+	line-height: 40px;
+	font-size: 14px;
+}
+.login-box span a {
+	color: #4682D1;
+}
+.login-box button {
+	float: left;
+	width: 120px;
+	margin-right: 15px;
+	padding: 0;
+}
+.login-box .checkbox {
+	float: left;
+	width: 16px;
+	height: 16px;
+	margin: 12px 5px 0 0;
+	overflow: hidden;
+	background: url(../images/checkbox.gif) no-repeat 0 0;
+}
+.login-box .checked {
+	background-position: -20px 0;
+}
+
+.register-link {
+	position: absolute;
+	top: 330px;
+	left: 22px;
+	width: 370px;
+	height: 30px;
+	padding: 15px 0;
+	font-size:12px;
+	background: #F2F2F2;
+	margin:0px auto;
+	test-align:center;
+}
+.footer {
+	padding: 15px 10px;
+	overflow: hidden;
+	zoom: 1;
+	color: #FFF;
+}
+.footer .ft-side {
+	position: relative;
+	float: right;
+}
+.copy-right {
+	clear: both;
+	padding-top: 10px;
+	line-height: 20px;
+	text-align: right;
+}
