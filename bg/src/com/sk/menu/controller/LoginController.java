@@ -19,8 +19,6 @@ import com.sk.menu.model.User;
 import com.sk.menu.service.UserService;
 import com.sk.util.Base64;
 import com.sk.util.Domain;
-
-
 @Controller
 public class LoginController {
 	@Autowired 
