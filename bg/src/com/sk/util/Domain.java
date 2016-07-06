@@ -15,6 +15,10 @@ public class Domain {
 	public static final Integer ISREGIST=1;
 	//未注册
 	public static final Integer NOREGIST=0;
+	//登录成功
+	public static final Integer ISLOGIN=100;
+	//登录失败
+	public static final Integer NOLOGIN=101;
 	//超级管理员
 	public static final Integer KIND_ADMIN=1;
 	//普通员工

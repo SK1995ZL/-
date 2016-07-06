@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sk.menu.model.User;
 import com.sk.menu.service.UserService;
+import com.sk.util.Base64;
 import com.sk.util.Domain;
 
 
@@ -28,8 +30,7 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping("login!index")
-	public String bgLogin(Model model,Integer isRegist){
-		System.out.println("isRegist="+isRegist);
+	public String bgLogin(Model model,Integer isRegist,HttpServletRequest req,HttpServletResponse resp){
 		if(isRegist!=null){
 			if(isRegist==1){
 				model.addAttribute("isRegist",Domain.ISREGIST);
@@ -37,6 +38,8 @@ public class LoginController {
 				model.addAttribute("isRegist",Domain.NOREGIST);
 			}
 		}
+		String modelStr=(String) req.getParameter("model");
+		model.addAttribute("model",modelStr );
 		return "/login/bgLogin";
 	}
 	/**
@@ -46,12 +49,18 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value="login!login",method=RequestMethod.POST)
-	public String login(String nickname,String password){
-		System.out.println("user="+nickname+","+password);
-		
-		
-		
-		return null;
+	public String login(String nickname,String password,HttpServletRequest req,HttpServletResponse resp){
+		User checkUser=new User();
+		checkUser.setNickname(nickname);
+		checkUser.setPassword(Base64.encode(password));;
+		User user=userService.selectUserByNickNameAndPassword(checkUser);
+		if(user!=null){
+			HttpSession session=req.getSession();
+			session.setAttribute("user", user);
+			return null;
+		}else{
+			return "redirect:./login!index.ht?model="+Domain.NOLOGIN;
+		}
 	}
 	/**
 	 * 到搭建商注册页面
@@ -72,14 +81,25 @@ public class LoginController {
 		return "/login/setupUserAgreeMent";
 	}
 
+	/**
+	 * 搭建商注册
+	 * @param user
+	 * @return
+	 */
 	@RequestMapping(value="setUp!regist",method=RequestMethod.POST)
 	@Transactional
 	public String setUpRegist(User user){
+		user.setPassword(Base64.encode(user.getPassword()));
 		userService.insert(user);
-		//System.out.println(user.getId());
 		return "redirect:./login!index.ht?isRegist="+Domain.ISREGIST;
 	}
-	@RequestMapping(value="setUp!nickname",method=RequestMethod.GET)
+	/**
+	 * 校验昵称是否存在
+	 * @param req
+	 * @param resp
+	 * @param nickname
+	 */
+	@RequestMapping(value="setUp!nickname",method=RequestMethod.POST)
 	public void setUpRegistNickName(HttpServletRequest req,HttpServletResponse resp,String nickname){
 		resp.setCharacterEncoding("UTF-8");
 		resp.setContentType("html/text");
@@ -87,16 +107,13 @@ public class LoginController {
 		try {
 			out=resp.getWriter();
 			int count=userService.selectUserCountByNickName(nickname);
+			System.out.println("count="+count);
             out.print(count); 
-            //<span class=\"glyphicon glyphicon-ok\"></span><span class=\"glyphicon glyphicon-remove\"></span>
             out.flush();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			out.close();
 		}
-		
-		
 	}
 }

@@ -26,6 +26,48 @@
 		   <input type="button" id="regist" value="搭建商注册" class="btn btn-success"/><span class="space">&nbsp;</span><span class="space">&nbsp;</span>
 		   <input type="button" id="forgetPass" value="忘记密码" class="btn btn-success"/>
 		</div>
+		<div class="modal fade" id="myRegistModal" tabindex="-1" role="dialog" 
+   			aria-labelledby="myModalLabel" aria-hidden="true">
+   			<div class="modal-dialog">
+      			<div class="modal-content">
+         			<div class="modal-header">
+            			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                  			&times;
+            			</button>
+            			<h4 class="modal-title" id="myModalLabel">
+              				 注册成功
+            			</h4>
+         			</div>
+         			<div class="modal-body">
+            			 注册成功，请登录
+         			</div>
+         			<div class="modal-footer">
+            			<button type="button" class="btn btn-default"  data-dismiss="modal">关闭</button>
+         			</div>
+      			</div>
+			</div>
+		</div>
+		<div class="modal fade" id="myLoginModal" tabindex="-1" role="dialog" 
+   			aria-labelledby="myModalLabel" aria-hidden="true">
+   			<div class="modal-dialog">
+      			<div class="modal-content">
+         			<div class="modal-header">
+            			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                  			&times;
+            			</button>
+            			<h4 class="modal-title" id="myModalLabel">
+              				<span class="font_red"><span class="glyphicon glyphicon-remove"></span>登录失败</span>
+            			</h4>
+         			</div>
+         			<div class="modal-body">
+            			登录失败，请重新登录
+         			</div>
+         			<div class="modal-footer">
+            			<button type="button" class="btn btn-default"  data-dismiss="modal">关闭</button>
+         			</div>
+      			</div>
+			</div>
+		</div>
 		<script language="javascript">
 			$(document).ready(function (){
 				$("#login").click(function (){
@@ -41,8 +83,14 @@
 		       	   $("#loginForm").attr("action","./setup!toRegist.ht");
 		           $("#loginForm").submit();
 		       });
-		       $(function () { $('input[data-toggle=tooltip]').tooltip();});
+		       if(${isRegist==1}){
+		       		$('#myRegistModal').modal();
+		       };
+		       if(${model==101}){
+		       		$('#myLoginModal').modal();
+		       }
 		   });
+		   $(function () { $('input[data-toggle=tooltip]').tooltip();});
 		</script>
 	 </body>
 </html>

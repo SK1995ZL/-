@@ -1,24 +1,28 @@
 package com.sk.menu.service;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.sk.menu.model.User;
-import com.sk.menu.model.UserMapper;
-
-@Repository
-public class UserService {
-
-	@Autowired
-	private UserMapper userMapper;
-	@Transactional(readOnly=false)
-	public boolean insert(User user){
-		return userMapper.insert(user);
-	}
+public interface UserService {
+    /**
+     * 注册搭建商
+     * @param user
+     * @return
+     */
 	@Transactional(readOnly=true)
-	public int selectUserCountByNickName(String nickname){
-		return userMapper.selectUserCountByNickName(nickname);
-	}
+	public boolean insert(User user);
+	/**
+	 * 校验是否存在同样的昵称
+	 * @param nickname
+	 * @return
+	 */
+	@Transactional(readOnly=true)
+	public int selectUserCountByNickName(String nickname);
+	/**
+	 * 根据昵称和密码查找user
+	 * 登录
+	 * @param user
+	 * @return
+	 */
+	@Transactional(readOnly=true)
+	public User selectUserByNickNameAndPassword(User user);
 
 }

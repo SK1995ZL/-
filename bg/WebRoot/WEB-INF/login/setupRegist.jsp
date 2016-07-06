@@ -88,21 +88,19 @@
                 });
                 var boo=true;
                	$("#nickname").blur(function (){
-                    //alert("test");
-                    $.get("./setUp!nickname", { nickname: $("#nickname").val() },
-          				function(data){
-          				    alert("data="+data);
-          				    if(data>0){
-          						$("#nicknameText").html("<span class=\"glyphicon glyphicon-ok\"><span class=\"font_green\">此昵称可以使用</span>");
-          						boo=true;
-          						return boo;
-          				    }else{
-          				        $("#nicknameText").html("<span class=\"glyphicon glyphicon-remove\"><span class=\"font_red\">此昵称不可以使用</span>");
-          				    	boo=false;
-          				    	return boo;
-          				    }
+                    $.post("./setUp!nickname.ht", { nickname: $("#nickname").val() },
+         				function(data){
+         				    alert("data="+data);
+         				    if(data==0){
+         						$("#nicknameText").html("<span class=\"glyphicon glyphicon-ok\"><span class=\"font_green\">此昵称可以使用</span>");
+         						boo=true;
+         						return boo;
+         				    }else{
+         				        $("#nicknameText").html("<span class=\"glyphicon glyphicon-remove\"><span class=\"font_red\">此昵称不可以使用</span>");
+         				    	boo=false;
+         				    	return boo;
+         				    }
           				});
-                    
                 });
                 
                $("#setUpRegist").click(function(){

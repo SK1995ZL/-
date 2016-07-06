@@ -37,7 +37,7 @@
   <select id="selectUserByNickNameAndPassword" parameterType="com.sk.menu.model.User" resultMap="BaseResultMap">
      select <include refid="Base_Column_List"/>  from bg_user where nickname=#{nickname,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
   </select> 
-  <select id="selectUserCountByNickName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectUserCountByNickName" parameterType="java.lang.String" resultType="java.lang.Integer">
      select count(1) from bg_user where nickname=#{nickname,jdbcType=VARCHAR}
   </select> 
   <insert id="insert" parameterType="com.sk.menu.model.User" >
