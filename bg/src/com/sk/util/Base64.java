@@ -316,9 +316,9 @@ public class Base64 {
     // end of test code.
     // /////////////////////////////////////////////////
     public static void main(String[] args) {
-		//String str=Base64.encode("我是张臭臭");
-		//System.out.println("str="+str);
-    	String out=Base64.decode("MTIzNDU2Nzg=");
-    	System.out.println("out="+out);
+		String str=Base64.encode("zhanglu123");
+		System.out.println("str="+str);
+    	//String out=Base64.decode("MTIzNDU2Nzg=");
+    	//System.out.println("out="+out);
 	}
 }

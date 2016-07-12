@@ -28,7 +28,7 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping("login!index")
-	public String bgLogin(Model model,Integer isRegist,HttpServletRequest req,HttpServletResponse resp){
+	public String bgLogin(Model model,Integer isRegist,Integer isLogin,HttpServletRequest req,HttpServletResponse resp){
 		if(isRegist!=null){
 			if(isRegist==1){
 				model.addAttribute("isRegist",Domain.ISREGIST);
@@ -55,10 +55,22 @@ public class LoginController {
 		if(user!=null){
 			HttpSession session=req.getSession();
 			session.setAttribute("user", user);
-			return null;
+			return "redirect:./menu!layout.ht";
 		}else{
 			return "redirect:./login!index.ht?model="+Domain.NOLOGIN;
 		}
+	}
+	/**
+	 * 注销登录
+	 * @param req
+	 * @param resp
+	 * @return
+	 */
+	@RequestMapping(value="login!out",method=RequestMethod.GET)
+	public String loginOut(HttpServletRequest req,HttpServletResponse resp){
+		HttpSession session=req.getSession(true);
+		session.setAttribute("user", null);
+		return "redirect:./login!index.ht";
 	}
 	/**
 	 * 到搭建商注册页面

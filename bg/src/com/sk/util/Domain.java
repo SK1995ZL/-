@@ -1,11 +1,5 @@
 package com.sk.util;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
-import net.sf.json.JSONArray;
-
 public class Domain {
 
 	public static  final String BG_TITLE="北京兴业德诚报馆系统";
@@ -25,6 +19,14 @@ public class Domain {
 	public static final Integer KIND_EMP=2;
 	//搭建商
 	public static final Integer KIND_SETUP=3;
+	/**
+	 * 尚未补全资料
+	 */
+	public static final Integer IS_NO_TOKEN=520;
+	/**
+	 * 已补全资料
+	 */
+	public static final Integer IS_YES_TOKEN=620;
 	//获取职务post
 	public static HashMap<String, String> getPostMap(){
 		HashMap<String, String> hashMap=new HashMap<String, String>();

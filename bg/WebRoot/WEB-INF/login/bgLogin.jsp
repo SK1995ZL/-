@@ -39,7 +39,7 @@
             			</h4>
          			</div>
          			<div class="modal-body">
-            			 注册成功，请登录
+            			<span class="font_grey"><strong>注册成功，请登录</strong></span>
          			</div>
          			<div class="modal-footer">
             			<button type="button" class="btn btn-default"  data-dismiss="modal">关闭</button>
@@ -56,11 +56,11 @@
                   			&times;
             			</button>
             			<h4 class="modal-title" id="myModalLabel">
-              				<span class="font_red"><span class="glyphicon glyphicon-remove"></span>登录失败</span>
+              				<span class="font_red"><span class="glyphicon glyphicon-remove"></span>登录失败或者登录失效</span>
             			</h4>
          			</div>
          			<div class="modal-body">
-            			登录失败，请重新登录
+            			<span class="font_red"><strong>登录失败或者登录失效，请重新登录</strong></span>
          			</div>
          			<div class="modal-footer">
             			<button type="button" class="btn btn-default"  data-dismiss="modal">关闭</button>
@@ -72,8 +72,10 @@
 			$(document).ready(function (){
 				$("#login").click(function (){
 				 	var b=account( $("#nickname"),8,20);
+				 	//alert("username="+b);
                    	if(!b)return false;
                    	b=account( $("#password"),8,20);
+                   	//alert("password="+b);
                    	if(!b)return false;
 					$("#loginForm").attr("action","./login!login.ht");
 					$("#loginForm").submit();
