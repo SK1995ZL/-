@@ -19,7 +19,12 @@
                     "minCheckbox":{  
                         "regex":"none",  
                         "alertText":"* 至少选择 ",  
-                        "alertText2":" 项."},      
+                        "alertText2":" 项."}, 
+                    "stringCheckSub" : {
+                        validator : function(value) {
+                        return /^[a-zA-Z0-9\u4E00-\u9FA5]+$/.test(value);},
+                        message : "只能包括中文字、英文字母、数字"
+                       },
                     "confirm":{  
                         "regex":"none",  
                         "alertText":"* 两次输入不一致,请重新输入."},          

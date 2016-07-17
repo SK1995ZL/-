@@ -13,8 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.sk.menu.model.User;
 import com.sk.menu.service.UserService;
 import com.sk.util.Base64;

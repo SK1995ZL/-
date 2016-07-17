@@ -35,5 +35,32 @@ public class Domain {
 		hashMap.put(String.valueOf(3), String.valueOf("业务员"));
 		return hashMap;
 	}
+	/**
+	 * 草稿状态
+	 */
+	public static final Integer PROJECT_STATUS_DRAFTS=0;
+	/**
+	 * 提交状态
+	 */
+	public static final Integer PROJECT_STATUS_SUBMIT=1;
+	/**
+	 * 运行状态
+	 */
+	public static final Integer PROJECT_STATUS_OPERATINAL=2;
+	/**
+	 * 作废状态
+	 */
+    public static final Integer PROJECT_STATUS_CANCELLAT=3;
+    /**
+     * 我的项目状态
+     */
+	public static HashMap<String, String> getProjectMap(){
+		HashMap<String, String> hashMap=new HashMap<String, String>();
+		hashMap.put(String.valueOf(Domain.PROJECT_STATUS_DRAFTS),"草稿状态");
+		hashMap.put(String.valueOf(Domain.PROJECT_STATUS_SUBMIT),"提交状态");
+		hashMap.put(String.valueOf(Domain.PROJECT_STATUS_OPERATINAL),"运行状态");
+		hashMap.put(String.valueOf(Domain.PROJECT_STATUS_CANCELLAT),"作废状态");
+		return hashMap;
+	}
 	
 }

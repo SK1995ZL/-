@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*,com.sk.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.util.*,com.sk.util.*" pageEncoding="utf-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
@@ -12,7 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resource/style/page.css">
 	</head>
 	<body>
-		<div id="p" class="easyui-panel" title="Basic Panel" style="width:700px;height:200px;padding:10px;">
+		<div id="p" class="easyui-panel" style="width:100%;height:100%">
 		<p style="font-size:14px">jQuery EasyUI framework helps you build your web pages easily.</p>
 		<ul>
 			<li>easyui is a collection of user-interface plugin based on jQuery.</li>

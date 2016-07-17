@@ -2,7 +2,6 @@ package com.sk.menu.model;
 
 import com.sk.menu.model.UserKind;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 /**
  * 用户类型表
  * @author zhang

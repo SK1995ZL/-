@@ -15,15 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sk.menu.model.Menu;
-import com.sk.menu.model.MenuMapper;
 import com.sk.menu.model.User;
-import com.sk.util.CheckUtil;
-import com.sk.util.Domain;
+import com.sk.menu.service.MenuService;
 @Controller
 public class MenuController {
 
 	@Autowired
-	private MenuMapper menuMapper;
+	private MenuService menuService;
 	/**
 	 * 进入布局页面
 	 * @param req
@@ -40,7 +38,7 @@ public class MenuController {
 		Map map=new HashMap();
 		map.put("kind", user.getKindId());
 		//根据kind查找相应的菜单
-		List<Menu> menus=menuMapper.listSelect(map);
+		List<Menu> menus=menuService.listSelect(map);
 		JSONArray json=JSONArray.fromObject(menus);
 		model.addAttribute("menus", json.toString());
 		return "/menu/bg_main";

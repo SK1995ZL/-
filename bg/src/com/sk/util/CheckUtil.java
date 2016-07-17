@@ -1,5 +1,6 @@
 package com.sk.util;
 
+import java.util.Date;
 import java.util.List;
 
 public class CheckUtil {
@@ -12,5 +13,8 @@ public class CheckUtil {
 	}
 	public static boolean checkObject(Object obj){
 		return (null!=obj)?true:false;
+	}
+	public static boolean checkDate(Date date){
+		return (null!=date)?true:false;
 	}
 }

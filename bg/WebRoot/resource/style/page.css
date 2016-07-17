@@ -20,7 +20,8 @@ pre{
 }
 ul,li{list-style:none;}
 #page{margin:0 auto;width:99%}
-#nav{line-height:30px;font-family:宋体, Arial;border-bottom:1px solid #d5e1e9;font-weight:700;padding:0;}
+#nav{line-height:30px;font-family:宋体, Arial;border-bottom:solid #d5e1e9;font-weight:700;padding:0;}
+#navTab{line-height:30px;font-family:宋体, Arial;font-weight:700;fpadding:0;font-size: 15px}
 .topBar{background-color:#0c8484;height:40px;line-height:40px;color:#fff;font-size:16px;font-weight:900;text-align:center;}
 .topClass{background-color:#B8D0D6;font-weight:700;}
 .topClassColor{color:#000;}

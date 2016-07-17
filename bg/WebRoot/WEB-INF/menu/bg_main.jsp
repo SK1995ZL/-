@@ -42,6 +42,8 @@
 					closable:true,
 					icon: ''
 				});
+			}else{
+				$("#tabs").tabs('select', name);
 			}
 		}
 		function createFrame(href)
@@ -62,10 +64,11 @@
 					}
 				});
 			});
+			$("#about").html('<iframe scrolling="auto" frameborder="0" border="0" src=./menu!homePage.ht style="width:100%;height:100%;"></iframe>');
 		});
 	</script>
 	<body class="easyui-layout">
-	    <div data-options="region:'north'" style="height:18%">
+	    <div data-options="region:'north'" style="height:12%">
 	        <div>
 	            <form id="loginOutForm" action="" method="get">
 		        	<p id="title" align="left"><%=Domain.BG_TITLE %><span class="space">&nbsp;</span><span class="space">&nbsp;</span><span class="space">&nbsp;</span>
@@ -76,12 +79,13 @@
 		</div>
 	    <div data-options="region:'center'">
 	        <div class="easyui-layout" data-options="fit:true">
-	            <div data-options="region:'west',collapsed:true" style="width:15%">
+	            <div data-options="region:'west'" style="width:15%">
 	            	<ul id="modularTree" class="ztree"></ul>
 	            </div>
 	            <div data-options="region:'center'">
-	            	<div id="tabs" class="easyui-tabs" data-options="fit:true,border:false,plain:true">
-	        			<div title="首页" id="about"></div>
+	            	<div id="tabs" class="easyui-tabs" data-options="fit:true,border:true,plain:true">
+	        			<div title="首页" id="about">
+	        			</div>
 	        		</div>
 	            </div>
 	        </div>

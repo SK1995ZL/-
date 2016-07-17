@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sk.menu.model.MyProjectMapper" >
+	<resultMap id="BaseResultMap" type="com.sk.menu.model.MyProject" >
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="office_start" property="officeStart" jdbcType="TIMESTAMP" />
+		<result column="office_end" property="officeEnd" jdbcType="TIMESTAMP" />
+		<result column="creator" property="creator" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="status_id" property="statusId" jdbcType="INTEGER" />
+		<result column="creator_str" property="creatorStr" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="selectCount" resultType="java.lang.Integer">
+		select count(1) from bg_my_project;
+	</select>
+	<select id="selectlist" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+		select id,name,office_start,office_end,creator,create_time,status_id,
+			(select nickname from bg_user where id=bg_my_project.creator) creator_str from bg_my_project where 1=1
+			 <if test="searchName!=null and searchName!='' ">  
+				and name like CONCAT('%',#{searchName},'%')
+			</if>
+	</select>
+</mapper>
