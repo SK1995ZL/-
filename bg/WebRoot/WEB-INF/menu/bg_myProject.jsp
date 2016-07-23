@@ -7,6 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resource/jqueryEasyUi/themes/icon.css">
 		<script src="<%=request.getContextPath()%>/resource/jqueryEasyUi/jquery.min.js" type="text/javascript"></script>
 		<script type="text/javascript" src="<%=request.getContextPath()%>/resource/jqueryEasyUi/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/resource/jqueryEasyUi/validate.js"></script>
 		<script type="text/javascript" src="<%=request.getContextPath()%>/resource/jqueryEasyUi/easyloader.js"></script>
 		<script src="<%=request.getContextPath()%>/resource/json2.js" type="text/javascript"></script>
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resource/style/page.css">
@@ -21,7 +22,7 @@
 			<div  id="easyui_toolbar" border="false"  
                 style="border-bottom: 1px solid #ddd; height: 32px; padding: 2px 5px; background: #fafafa;">  
                 <div style="float: left;">  
-                    <a href="#" class="easyui-linkbutton" plain="true" onclick="add()" icon="icon-add">新增</a>  
+                    <a href="#" class="easyui-linkbutton" plain="true" onclick="toAdd()" icon="icon-add">新增</a>  
                 </div>  
                 <div class="datagrid-btn-separator"></div>  
                 <div style="float: left;">  
@@ -39,36 +40,98 @@
 				</div>
             </div>
             <div id="addMyProject"></div>
+            <div id="editMyProject"></div>
             <div id="addMyProject-buttons">
-				<a href="javascript:void(0)" class="easyui-linkbutton" icon="icon-add"  onclick="">暂存</a>
-				<a href="javascript:void(0)" class="easyui-linkbutton" icon="icon-save"  onclick="">提交</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" icon="icon-add"  onclick="addZancun()">暂存</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" icon="icon-save"  onclick="javascript:addSub()">提交</a>
 				<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#addMyProject').dialog('close')">Close</a>
 			</div>
 			<div  id="addMyProject_toolbar" border="false"  
                 style="border-bottom: 1px solid #ddd; height: 32px; padding: 2px 5px; background: #fafafa;">  
                 <div style="float: left;">  
-                    <a href="#" class="easyui-linkbutton" plain="true" onclick="" icon="icon-add">暂存</a>  
+                    <a href="#" class="easyui-linkbutton" plain="true" onclick="addZancun()" icon="icon-add">暂存</a>  
                 </div>  
                 <div class="datagrid-btn-separator"></div>  
                 <div style="float: left;">  
-                    <a href="#" class="easyui-linkbutton" plain="true" icon="icon-save">提交</a>  
+                    <a href="#" class="easyui-linkbutton" plain="true" icon="icon-save" onclick="addSub()">提交</a>  
+                </div> 
+            </div>  
+            <div id="editMyProject-buttons">
+				<a href="javascript:void(0)" class="easyui-linkbutton" icon="icon-add"  onclick="editZancun()">暂存</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" icon="icon-save"  onclick="javascript:editSub()">提交</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#addMyProject').dialog('close')">Close</a>
+			</div>
+			<div  id="editMyProject_toolbar" border="false"  
+                style="border-bottom: 1px solid #ddd; height: 32px; padding: 2px 5px; background: #fafafa;">  
+                <div style="float: left;">  
+                    <a href="#" class="easyui-linkbutton" plain="true" onclick="editZancun()" icon="icon-add">暂存</a>  
+                </div>  
+                <div class="datagrid-btn-separator"></div>  
+                <div style="float: left;">  
+                    <a href="#" class="easyui-linkbutton" plain="true" icon="icon-save" onclick="editSub()">提交</a>  
                 </div> 
             </div>  
 		</div>
 		<script type="text/javascript">
-			
+			function load(){
+				$('#myprojectIndex').datagrid({
+    				pageSize:10,
+    				rownumbers:true,
+					singleSelect:true,
+					autoRowHeight:true,
+					pagination:true,
+					loading:true,
+					selectOnCheck: true,
+					checkOnSelect: true,
+					toolbar:'#easyui_toolbar',
+					fitColumns:false,
+					columns:[[
+						{field:'id',checkbox:true,width:200,height:40},
+				        {field:'name',title:'项目名称',width:200,align:'center',formatter:formatterTxt},
+				        {field:'officeStart',title:'报馆开始日期',width:180,align:'center',formatter:formatterTxt},
+				        {field:'officeEnd',title:'报馆结束日期',width:180,align:'center',formatter:formatterTxt},
+				        {field:'creatorStr',title:'创建人',width:180,align:'center',formatter:formatterTxt},
+				        {field:'createTime',title:'创建时间',width:180,align:'center',formatter:formatterTxt},
+				        {field:'statusStr',title:'项目状态',width:160,align:'center',formatter:formatterTxt}
+   				 	]],
+   				 	url:'./menu!myProjectlist.ht'
+				});
+				$('#myprojectIndex').datagrid('getPager').pagination({
+	       			beforePageText: '第',//页数文本框前显示的汉字 
+			        afterPageText: '页    共 {pages} 页',
+			        displayMsg: '共{total}条数据',
+	   		   	}); 
+			}
 			
 			$(function(){
-				//searcherShow();
 				$('#addMyProject').dialog({
-    				title: 'My Dialog',
+    				title: '添加项目',
 				    resizable:true,
 				    closed: true,
 				    cache: false,
 				    iconCls: 'icon-save',
 				    toolbar: '#addMyProject_toolbar',
 					buttons: '#addMyProject-buttons',
-				    //href: 'get_content.php',
+					href:'./menu!myProjectToAdd.ht',
+				    collapsible: true,
+	                minimizable: true,
+	                maximizable: true,
+	                resizable: true,
+	                width: 700,
+	                height: 400,
+	                left: 150,
+					top:50,
+				    modal: true
+				});
+				$('#editMyProject').dialog({
+    				title: '编辑项目',
+				    resizable:true,
+				    closed: true,
+				    cache: false,
+				    iconCls: 'icon-save',
+				    toolbar: '#editMyProject_toolbar',
+					buttons: '#editMyProject-buttons',
+					href:'./menu!myProjectToAdd.ht',
 				    collapsible: true,
 	                minimizable: true,
 	                maximizable: true,
@@ -96,8 +159,42 @@
 				}
 				
 			});
-			function add(){
+			function toAdd(){
 				$('#addMyProject').dialog('open');
+			}
+			function toedit(){
+				$('#editMyProject').dialog('open');
+			}
+			function addSub(){
+				$("#addObjectForm").form('submit',{
+			       	queryParams:{"statusId":<%=Domain.PROJECT_STATUS_SUBMIT%>},
+			        onSubmit: function(){
+			            alert($("#addObjectForm").form('validate'));
+			            return $("#addObjectForm").form('validate');
+			        },
+			        success:function(data){
+			            data=data.split("ccess:")[1];
+			            $.messager.alert('SUCCESSFUL',data,'icon-ok');
+			            $('#addMyProject').dialog('close');
+			            load();
+			        }
+			    });
+			}
+			function addZancun(){
+				//alert("zancun");
+				//alert($("#addObjectForm"));
+				$("#addObjectForm").form('submit',{
+			       	queryParams:{"statusId":<%=Domain.PROJECT_STATUS_DRAFTS%>},
+			       	onSubmit: function(){
+			       		 return $("#addObjectForm").form('validate');
+			       	},
+			        success:function(data){
+			            data=data.split("ccess:")[1];
+			            $.messager.alert('SUCCESSFUL',data,'icon-ok');
+			            $('#addMyProject').dialog('close');
+			            load();
+			        }
+			    });
 			}
 			function formatterTxt(value,row,index){
 					return "<span id=\"navTab\">"+value+"</span>";
@@ -142,33 +239,8 @@
    		   		}); 
 				return true;
     		}
-    		$('#myprojectIndex').datagrid({
-    				pageSize:10,
-    				rownumbers:true,
-					singleSelect:true,
-					autoRowHeight:true,
-					pagination:true,
-					loading:true,
-					selectOnCheck: true,
-					checkOnSelect: true,
-					toolbar:'#easyui_toolbar',
-					fitColumns:false,
-					columns:[[
-						{field:'id',checkbox:true,width:200,height:40},
-				        {field:'name',title:'项目名称',width:200,align:'center',formatter:formatterTxt},
-				        {field:'officeStart',title:'报馆开始日期',width:180,align:'center',formatter:formatterTxt},
-				        {field:'officeEnd',title:'报馆结束日期',width:180,align:'center',formatter:formatterTxt},
-				        {field:'creatorStr',title:'创建人',width:180,align:'center',formatter:formatterTxt},
-				        {field:'createTime',title:'创建时间',width:180,align:'center',formatter:formatterTxt},
-				        {field:'statusStr',title:'项目状态',width:160,align:'center',formatter:formatterTxt}
-   				 	]],
-   				 	url:'./menu!myProjectlist.ht'
-			});
-			$('#myprojectIndex').datagrid('getPager').pagination({
-       			beforePageText: '第',//页数文本框前显示的汉字 
-		        afterPageText: '页    共 {pages} 页',
-		        displayMsg: '共{total}条数据',
-   		   	}); 
+    		load();
+       
 		</script>
 	</body>
 </html>

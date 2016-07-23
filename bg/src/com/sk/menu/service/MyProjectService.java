@@ -22,6 +22,7 @@ public interface MyProjectService {
 	@SuppressWarnings("rawtypes")
 	@Transactional(readOnly=true)
 	public List<MyProject> selectlist(Map map);
-	
+	@Transactional
+	public boolean save(MyProject myProject);
 
 }

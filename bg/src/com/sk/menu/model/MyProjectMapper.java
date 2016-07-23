@@ -20,4 +20,10 @@ public interface MyProjectMapper {
 	 * @return
 	 */
 	public List<MyProject> selectComb();
+	/**
+	 * 保存
+	 * @param myProject
+	 * @return
+	 */
+	public boolean save(MyProject myProject);
 }

@@ -1,5 +1,6 @@
 package com.sk.menu.service.impl;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +27,14 @@ public class MyProjectServiceImpl implements MyProjectService{
 	@Transactional(readOnly=true)
 	public List<MyProject> selectlist(Map map) {
 		return myProjectMapper.selectlist(map);
+	}
+
+	@Override
+	@Transactional
+	public boolean save(MyProject myProject) {
+		// TODO Auto-generated method stub
+		myProject.setCreateTime(new Date());
+		return myProjectMapper.save(myProject);
 	}
 
 

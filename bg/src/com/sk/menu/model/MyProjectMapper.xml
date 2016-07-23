@@ -21,4 +21,8 @@
 				and name like CONCAT('%',#{searchName},'%')
 			</if>
 	</select>
+	<insert id="save" parameterType="com.sk.menu.model.MyProject">
+		insert into bg_my_project(name,office_start,office_end,creator,create_time,status_id) 
+			values(#{name,jdbcType=VARCHAR},#{officeStart,jdbcType=TIMESTAMP},#{officeEnd,jdbcType=TIMESTAMP},#{creator},#{createTime},#{statusId})
+	</insert>
 </mapper>

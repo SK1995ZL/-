@@ -9,7 +9,7 @@ $.extend($.fn.validatebox.defaults.rules, {
         validator: function (value, param) {
             return value.length >= param[0];
         },
-        message: '请输入至少（2）个字符.'
+        message:'请输入至少5个字符.'
     },
     length: { validator: function (value, param) {
         var len = $.trim(value).length;
@@ -111,12 +111,11 @@ $.extend($.fn.validatebox.defaults.rules, {
         },
         message: '请输入姓名'
     },
-    date: {// 验证姓名，可以是中文或英文
-        validator: function (value) {
-            //格式yyyy-MM-dd或yyyy-M-d
-            return /^(?:(?!0000)[0-9]{4}([-]?)(?:(?:0?[1-9]|1[0-2])\1(?:0?[1-9]|1[0-9]|2[0-8])|(?:0?[13-9]|1[0-2])\1(?:29|30)|(?:0?[13578]|1[02])\1(?:31))|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)([-]?)0?2\2(?:29))$/i.test(value);
+    date:{
+    	validator: function (value) {
+            return /^(([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})-(((0[13578]|1[02])-(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)-(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8]))))|((([0-9]{2})(0[48]|[2468][048]|[13579][26])|((0[48]|[2468][048]|[3579][26])00))-02-29)$/.test(value);
         },
-        message: '清输入合适的日期格式'
+        message: '* 请输入有效的日期,如:2008-08-08.'
     },
     msn: {
         validator: function (value) {
@@ -133,5 +132,18 @@ $.extend($.fn.validatebox.defaults.rules, {
             }
         },
         message: '两次输入的密码不一致！'
+    },
+    projectName: {
+        validator: function (value) {
+            return /^[a-zA-Z0-9\u4E00-\u9FA5]+$/.test(value);
+        },
+        message: '项目名称由数字字母或者中文组成'
+    },
+    dateShort: {// 验证姓名，可以是中文或英文
+        validator: function (value) {
+            //格式yyyy-MM-dd或yyyy-M-d
+            return /^\1|2\d{3}-\d{1,2}-\d{1,2} \d{1,2}$/.test(value);
+        },
+        message: '清输入合适的日期格式  例如 2016-09-09 17'
     }
 }); 
