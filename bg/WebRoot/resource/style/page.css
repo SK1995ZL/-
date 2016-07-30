@@ -206,12 +206,7 @@ span.space{display:-moz-inline-box;display:inline-block;width:30px;}
 
  .main{
 	background-color:hsla(120,65%,75%,0.3);
-}  /*
- .main{
-	background-image:url("../images/bg/bg_backgroud_main.png");
-	background-attachment:fixed;
-	background-repeat:no-repeat;
-	background-size:cover;
-	-moz-background-size:cover;
-	-webkit-background-size:cover;
-} */
+}
+.headerNav { height:50px; background-repeat:no-repeat; background-position:100% -50px;}
+.logo { float:left; width:500px; height:50px; text-indent:-1000px;}
+.logo { background:url(../images/bg/logo.png) no-repeat;}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sk.menu.model.SysGroupMapper" >
+
+  <resultMap id="BaseResultMap" type="sysGroup" >
+    <id column="group_id" property="groupId" jdbcType="INTEGER" />
+    <result column="group_name" property="groupName" jdbcType="VARCHAR" />
+    <result column="group_kind" property="groupKind" jdbcType="VARCHAR" />
+    <collection property="childrens" column="group_id" ofType="sysGroupChildren" select="com.sk.menu.model.SysGroupChildrenMapper.listChildrens"></collection>
+  </resultMap>
+  <select id="listGroup" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select * from sys_group where 1=1 and  group_kind like CONCAT('%','${kind}','%' ) 
+  </select>
+</mapper>

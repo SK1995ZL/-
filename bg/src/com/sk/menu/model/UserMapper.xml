@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sk.menu.model.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.sk.menu.model.User" >
+  <resultMap id="BaseResultMap" type="user" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="nickname" property="nickname" jdbcType="VARCHAR" />
     <result column="kind_id" property="kindId" jdbcType="INTEGER" />
@@ -34,13 +34,13 @@
     corporate_card, corporate_pic, business_pic, tax_pic, organization_pic, other_pic, 
     password,(select name from bg_user_kind where bg_user_kind.id=bg_user.kind_id) kind_name
   </sql>
-  <select id="selectUserByNickNameAndPassword" parameterType="com.sk.menu.model.User" resultMap="BaseResultMap">
+  <select id="selectUserByNickNameAndPassword" parameterType="user" resultMap="BaseResultMap">
      select <include refid="Base_Column_List"/>  from bg_user where nickname=#{nickname,jdbcType=VARCHAR} and password=#{password,jdbcType=VARCHAR}
   </select> 
   <select id="selectUserCountByNickName" parameterType="java.lang.String" resultType="java.lang.Integer">
      select count(1) from bg_user where nickname=#{nickname,jdbcType=VARCHAR}
   </select> 
-  <insert id="insert" parameterType="com.sk.menu.model.User" >
+  <insert id="insert" parameterType="user" >
     insert into bg_user (nickname, kind_id,
       mobile, email, post, 
       mailing_addr, password)

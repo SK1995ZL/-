@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sk.menu.model.SysGroupChildrenMapper" >
+  <resultMap id="BaseResultMap" type="sysGroupChildren" >
+    <id column="children_id" property="childrenId" jdbcType="INTEGER" />
+    <result column="children_name" property="childrenName" jdbcType="VARCHAR" />
+    <result column="group_id" property="groupId" jdbcType="INTEGER" />
+    <result column="children_kind" property="childrenKind" jdbcType="VARCHAR" />
+    <result column="children_url" property="childrenUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="listChildrens" resultMap="BaseResultMap" parameterType="int">
+  	select * from sys_group_children where 1=1 and group_id=#{groupId}
+  </select>
+</mapper>

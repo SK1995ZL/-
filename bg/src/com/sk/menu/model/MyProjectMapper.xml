@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sk.menu.model.MyProjectMapper" >
-	<resultMap id="BaseResultMap" type="com.sk.menu.model.MyProject" >
+	<resultMap id="BaseResultMap" type="myProject" >
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="office_start" property="officeStart" jdbcType="TIMESTAMP" />
@@ -21,14 +21,14 @@
 				and name like CONCAT('%',#{searchName},'%')
 			</if>
 	</select>
-	<insert id="save" parameterType="com.sk.menu.model.MyProject">
+	<insert id="save" parameterType="myProject">
 		insert into bg_my_project(name,office_start,office_end,creator,create_time,status_id) 
 			values(#{name,jdbcType=VARCHAR},#{officeStart,jdbcType=TIMESTAMP},#{officeEnd,jdbcType=TIMESTAMP},#{creator},#{createTime},#{statusId})
 	</insert>
-	<update id="edit" parameterType="com.sk.menu.model.MyProject">
+	<update id="edit" parameterType="myProject">
 		update bg_my_project set name=#{name,jdbcType=VARCHAR},office_start=#{officeStart,jdbcType=TIMESTAMP},office_end=#{officeEnd,jdbcType=TIMESTAMP} where id=#{id}
 	</update>
-	<update id="updateStu" parameterType="com.sk.menu.model.MyProject">
+	<update id="updateStu" parameterType="myProject">
 		update bg_my_project set status_id=#{statusId} where id=#{id}
 	</update>
 </mapper>

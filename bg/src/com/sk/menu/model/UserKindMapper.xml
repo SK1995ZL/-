@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sk.menu.model.UserKindMapper" >
-  <resultMap id="BaseResultMap" type="com.sk.menu.model.UserKind" >
+  <resultMap id="BaseResultMap" type="userKind" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
   </resultMap>
@@ -12,7 +12,7 @@
   <select id="selectUserKind" resultMap="BaseResultMap">
      select <include refid="Base_Column_List"></include> from bg_user_kind
   </select>
-  <select id="selectUserKindById" resultMap="BaseResultMap" parameterType="com.sk.menu.model.UserKind">
+  <select id="selectUserKindById" resultMap="BaseResultMap" parameterType="userKind">
      select <include refid="Base_Column_List"></include> from bg_user_kind where id=#{id,jdbcType=INTEGER}
   </select>
 </mapper>

@@ -222,7 +222,6 @@
 				$("#editObjectForm").form('submit',{
 			       	queryParams:{"statusId":<%=Domain.PROJECT_STATUS_SUBMIT%>},
 			        onSubmit: function(){
-			        	alert($("#edit_name").val());
 			            return $("#editObjectForm").form('validate');
 			        },
 			        success:function(data){
