@@ -22,7 +22,28 @@ public interface MyProjectService {
 	@SuppressWarnings("rawtypes")
 	@Transactional(readOnly=true)
 	public List<MyProject> selectlist(Map map);
+	/**
+	 * 保存我的项目
+	 * @param myProject
+	 * @return
+	 */
 	@Transactional
 	public boolean save(MyProject myProject);
 
+	/**
+	 * 编辑我的项目
+	 * @param myProject
+	 * @return
+	 */
+	@Transactional
+	public boolean edit(MyProject myProject);
+	
+	/**
+	 * 编辑我的项目状态
+	 * @param myProject
+	 * @return
+	 */
+	@Transactional
+	public boolean updateStu(MyProject myProject);
+	
 }

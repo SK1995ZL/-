@@ -25,4 +25,10 @@
 		insert into bg_my_project(name,office_start,office_end,creator,create_time,status_id) 
 			values(#{name,jdbcType=VARCHAR},#{officeStart,jdbcType=TIMESTAMP},#{officeEnd,jdbcType=TIMESTAMP},#{creator},#{createTime},#{statusId})
 	</insert>
+	<update id="edit" parameterType="com.sk.menu.model.MyProject">
+		update bg_my_project set name=#{name,jdbcType=VARCHAR},office_start=#{officeStart,jdbcType=TIMESTAMP},office_end=#{officeEnd,jdbcType=TIMESTAMP} where id=#{id}
+	</update>
+	<update id="updateStu" parameterType="com.sk.menu.model.MyProject">
+		update bg_my_project set status_id=#{statusId} where id=#{id}
+	</update>
 </mapper>

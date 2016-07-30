@@ -37,5 +37,19 @@ public class MyProjectServiceImpl implements MyProjectService{
 		return myProjectMapper.save(myProject);
 	}
 
+	@Override
+	@Transactional
+	public boolean edit(MyProject myProject) {
+		// TODO Auto-generated method stub
+		return myProjectMapper.edit(myProject);
+	}
+
+	@Override
+	@Transactional
+	public boolean updateStu(MyProject myProject) {
+		// TODO Auto-generated method stub
+		return myProjectMapper.updateStu(myProject);
+	}
+
 
 }

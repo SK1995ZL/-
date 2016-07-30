@@ -11,14 +11,15 @@
 		<script type="text/javascript" src="<%=request.getContextPath()%>/resource/jqueryEasyUi/easyloader.js"></script>
 		<script src="<%=request.getContextPath()%>/resource/json2.js" type="text/javascript"></script>
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resource/style/page.css">
+		<script type="text/javascript" src="<%=request.getContextPath()%>/resource/autocomplete/jquery.autocomplete.js"></script>
 	<style type="text/css">
 		.datagrid-btable tr{height: 40px;}
 	</style>
 	</head>
 	<body >
 	    <div align="center"  style="width:auto;height:auto">
+	    	<!-- 列表 -->
 			<table id="myprojectIndex" title="欢迎进入‘我的项目’列表" style="width:auto;height:auto"></table>
-			<div id="addProject"></div>
 			<div  id="easyui_toolbar" border="false"  
                 style="border-bottom: 1px solid #ddd; height: 32px; padding: 2px 5px; background: #fafafa;">  
                 <div style="float: left;">  
@@ -26,21 +27,21 @@
                 </div>  
                 <div class="datagrid-btn-separator"></div>  
                 <div style="float: left;">  
-                    <a href="#" class="easyui-linkbutton" plain="true" icon="icon-save">编辑</a>  
+                    <a href="#" class="easyui-linkbutton" plain="true" onclick="toedit()" icon="icon-save">编辑</a>  
                 </div>  
                 <div class="datagrid-btn-separator"></div>  
                 <div style="float: left;">  
                     <a href="#" class="easyui-linkbutton" plain="true" icon="icon-remove">删除</a>  
                 </div>  
                 <div id="tb" style="float: right;">  
-                    <input id="ss" class="easyui-searchbox main_input"  prompt="请输入项目名称" style="width:500px; vertical-align: middle;"></input>   
+                    <input id="ss" class="easyui-searchbox main_input"  prompt="请输入项目名称" style="width:500px; vertical-align: middle;"></input>
                 </div>  
                 <div id="mm">
 					<div data-options="name:'searchName',iconCls:'icon-ok'">项目名称</div>
 				</div>
             </div>
+            <!-- 添加 -->
             <div id="addMyProject"></div>
-            <div id="editMyProject"></div>
             <div id="addMyProject-buttons">
 				<a href="javascript:void(0)" class="easyui-linkbutton" icon="icon-add"  onclick="addZancun()">暂存</a>
 				<a href="javascript:void(0)" class="easyui-linkbutton" icon="icon-save"  onclick="javascript:addSub()">提交</a>
@@ -55,22 +56,29 @@
                 <div style="float: left;">  
                     <a href="#" class="easyui-linkbutton" plain="true" icon="icon-save" onclick="addSub()">提交</a>  
                 </div> 
-            </div>  
+            </div> 
+            <!-- 编辑 --> 
+            <div id="editMyProject"></div>
             <div id="editMyProject-buttons">
 				<a href="javascript:void(0)" class="easyui-linkbutton" icon="icon-add"  onclick="editZancun()">暂存</a>
 				<a href="javascript:void(0)" class="easyui-linkbutton" icon="icon-save"  onclick="javascript:editSub()">提交</a>
 				<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#addMyProject').dialog('close')">Close</a>
 			</div>
 			<div  id="editMyProject_toolbar" border="false"  
-                style="border-bottom: 1px solid #ddd; height: 32px; padding: 2px 5px; background: #fafafa;">  
+                style="border-bottom: 1px solid #ddd; height: 32px; padding: 2px 5px; background: #fafafa;"> 
+                <div style="float: left;">  
+                    <a href="#" class="easyui-linkbutton" plain="true" icon="icon-reload" id="loadData">加载数据</a>  
+                </div> 
+                <div class="datagrid-btn-separator"></div>  
                 <div style="float: left;">  
                     <a href="#" class="easyui-linkbutton" plain="true" onclick="editZancun()" icon="icon-add">暂存</a>  
                 </div>  
                 <div class="datagrid-btn-separator"></div>  
                 <div style="float: left;">  
                     <a href="#" class="easyui-linkbutton" plain="true" icon="icon-save" onclick="editSub()">提交</a>  
-                </div> 
-            </div>  
+                </div>
+            </div>
+            <form action="" method="post" id="updateSt"></form>  
 		</div>
 		<script type="text/javascript">
 			function load(){
@@ -92,7 +100,7 @@
 				        {field:'officeEnd',title:'报馆结束日期',width:180,align:'center',formatter:formatterTxt},
 				        {field:'creatorStr',title:'创建人',width:180,align:'center',formatter:formatterTxt},
 				        {field:'createTime',title:'创建时间',width:180,align:'center',formatter:formatterTxt},
-				        {field:'statusStr',title:'项目状态',width:160,align:'center',formatter:formatterTxt}
+				        {field:'statusStr',title:'项目状态',width:160,align:'center',formatter:formatterStatus}
    				 	]],
    				 	url:'./menu!myProjectlist.ht'
 				});
@@ -131,7 +139,7 @@
 				    iconCls: 'icon-save',
 				    toolbar: '#editMyProject_toolbar',
 					buttons: '#editMyProject-buttons',
-					href:'./menu!myProjectToAdd.ht',
+					href:'./menu!myProjectToEdit.ht',
 				    collapsible: true,
 	                minimizable: true,
 	                maximizable: true,
@@ -163,13 +171,29 @@
 				$('#addMyProject').dialog('open');
 			}
 			function toedit(){
-				$('#editMyProject').dialog('open');
+				var checkedItems = $('#myprojectIndex').datagrid('getChecked');
+				if(checkedItems.length<=0){
+					$.messager.alert('警告','您没有选择删除任何数据');
+				}else{
+					$('#editMyProject').dialog('open');
+					$("#loadData").attr('onclick','loadEditData('+JSON.stringify(checkedItems[0])+')');
+				}
+			}
+			function loadEditData(data){
+				$('#editObjectForm').form('load',data);
+			}
+			function sleep(numberMillis) { 
+			   var now = new Date();
+			   var exitTime = now.getTime() + numberMillis;  
+			   while (true) { 
+			       now = new Date(); 
+			       if (now.getTime() > exitTime)    return;
+			    }
 			}
 			function addSub(){
 				$("#addObjectForm").form('submit',{
 			       	queryParams:{"statusId":<%=Domain.PROJECT_STATUS_SUBMIT%>},
 			        onSubmit: function(){
-			            alert($("#addObjectForm").form('validate'));
 			            return $("#addObjectForm").form('validate');
 			        },
 			        success:function(data){
@@ -181,8 +205,6 @@
 			    });
 			}
 			function addZancun(){
-				//alert("zancun");
-				//alert($("#addObjectForm"));
 				$("#addObjectForm").form('submit',{
 			       	queryParams:{"statusId":<%=Domain.PROJECT_STATUS_DRAFTS%>},
 			       	onSubmit: function(){
@@ -191,14 +213,66 @@
 			        success:function(data){
 			            data=data.split("ccess:")[1];
 			            $.messager.alert('SUCCESSFUL',data,'icon-ok');
-			            $('#addMyProject').dialog('close');
+			            $('#editMyProject').dialog('close');
+			            load();
+			        }
+			    });
+			}
+			function editSub(){
+				$("#editObjectForm").form('submit',{
+			       	queryParams:{"statusId":<%=Domain.PROJECT_STATUS_SUBMIT%>},
+			        onSubmit: function(){
+			        	alert($("#edit_name").val());
+			            return $("#editObjectForm").form('validate');
+			        },
+			        success:function(data){
+			            data=data.split("ccess:")[1];
+			            $.messager.alert('SUCCESSFUL',data,'icon-ok');
+			            $('#editMyProject').dialog('close');
+			            load();
+			        }
+			    });
+			}
+			function editZancun(){
+				$("#editObjectForm").form('submit',{
+			       	queryParams:{"statusId":<%=Domain.PROJECT_STATUS_DRAFTS%>},
+			       	onSubmit: function(){
+			       		 return $("#editObjectForm").form('validate');
+			       	},
+			        success:function(data){
+			            data=data.split("ccess:")[1];
+			            $.messager.alert('SUCCESSFUL',data,'icon-ok');
+			            $('#editMyProject').dialog('close');
 			            load();
 			        }
 			    });
 			}
 			function formatterTxt(value,row,index){
-					return "<span id=\"navTab\">"+value+"</span>";
+				return "<span id=\"navTab\">"+value+"</span>";
 			};
+			function formatterStatus(value,row,index){
+				//alert("row="+row.id+'_'+row.statusId);
+				return "<a href=\"javascript:void(0)\" id=\"navTab\" onclick=\"editSt("+row.id+","+row.statusId+")\">"+value+"</span>";
+			}
+			function editSt(id,statusId){
+				var dataSt=null;
+				if(parseInt(statusId)==<%=Domain.PROJECT_STATUS_DRAFTS%>){
+					dataSt=<%=Domain.PROJECT_STATUS_SUBMIT%>;
+				}else if(parseInt(statusId)==<%=Domain.PROJECT_STATUS_SUBMIT%>){
+					dataSt=<%=Domain.PROJECT_STATUS_OPERATINAL%>;
+				}else if(parseInt(statusId)==<%=Domain.PROJECT_STATUS_OPERATINAL%>){
+					dataSt=<%=Domain.PROJECT_STATUS_CANCELLAT%>;
+				}else if(parseInt(statusId)==<%=Domain.PROJECT_STATUS_CANCELLAT%>){
+					dataSt=<%=Domain.PROJECT_STATUS_DRAFTS%>;
+				}
+				$.post("./menu!myProjectUpdateSt.ht", { id: id, statusId: dataSt},function(data){
+					 data=data.split("ccess:")[1];
+					 if(data!=''&&data!=null){
+					 	$.messager.alert('SUCCESSFUL',data,'icon-ok');
+			            load();
+					 }
+				});
+			}
 			function doSearchName(value,name){
 				if(!(value.length >= 0 && value.length  <= 33)){
 					$.messager.alert('警告','搜索框请输入大于0小于33的字符');
@@ -228,7 +302,7 @@
 				        {field:'officeEnd',title:'报馆结束日期',width:180,align:'center',formatter:formatterTxt},
 				        {field:'creatorStr',title:'创建人',width:180,align:'center',formatter:formatterTxt},
 				        {field:'createTime',title:'创建时间',width:180,align:'center',formatter:formatterTxt},
-				        {field:'statusStr',title:'项目状态',width:160,align:'center',formatter:formatterTxt}
+				        {field:'statusStr',title:'项目状态',width:160,align:'center',formatter:formatterStatus}
    				 	]],
    				 	url:'./menu!myProjectlist.ht?searchName='+value
 				});

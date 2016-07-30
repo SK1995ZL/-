@@ -26,4 +26,16 @@ public interface MyProjectMapper {
 	 * @return
 	 */
 	public boolean save(MyProject myProject);
+	/**
+	 * 编辑我的项目
+	 * @param myProject
+	 * @return
+	 */
+	public boolean edit(MyProject myProject);
+	/**
+	 * 我的项目修改状态
+	 * @param myProject
+	 * @return
+	 */
+	public boolean updateStu(MyProject myProject);
 }
