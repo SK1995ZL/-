@@ -1,4 +1,8 @@
 package com.sk.menu.model;
+
+import java.util.List;
+import java.util.Map;
+
 /**
  * 用户表
  * @author zhang
@@ -25,4 +29,10 @@ public interface UserMapper {
     * @return
     */
    public int selectUserCountByNickName(String nickname);
+   /**
+    * 账户管理列表
+    * @param user
+    * @return
+    */
+   public List<User> listSelect(@SuppressWarnings("rawtypes") Map map);
 }

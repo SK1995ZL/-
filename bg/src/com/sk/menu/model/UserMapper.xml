@@ -40,6 +40,12 @@
   <select id="selectUserCountByNickName" parameterType="java.lang.String" resultType="java.lang.Integer">
      select count(1) from bg_user where nickname=#{nickname,jdbcType=VARCHAR}
   </select> 
+  <select id="listSelect" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select <include refid="Base_Column_List"/> from bg_user where 1=1 
+  	<if test="kindId!=null and kindId!=''">
+  		and kind_id=#{kindId}
+  	</if>
+  </select>
   <insert id="insert" parameterType="user" >
     insert into bg_user (nickname, kind_id,
       mobile, email, post, 

@@ -2,7 +2,6 @@ package com.sk.menu.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,6 +20,11 @@ import com.sk.menu.model.MyProject;
 import com.sk.menu.service.MyProjectService;
 import com.sk.util.DateUtil;
 import com.sk.util.Domain;
+/**
+ * 设置项目
+ * @author SK
+ *
+ */
 @Controller
 public class MyProjectController {
 
@@ -64,6 +66,7 @@ public class MyProjectController {
 	public void menuMyProjectCombo(HttpServletRequest request,HttpServletResponse resp) throws IOException{
 		resp.setCharacterEncoding("utf-8");
 		resp.setContentType("text/html;charset=utf-8");
+		@SuppressWarnings("rawtypes")
 		List<MyProject> myProjects=myProjectService.selectlist(new HashMap());
 		StringBuffer comboes=new StringBuffer();
 		comboes.append("[");

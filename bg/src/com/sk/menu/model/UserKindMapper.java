@@ -1,6 +1,7 @@
 package com.sk.menu.model;
 
 import com.sk.menu.model.UserKind;
+
 import java.util.List;
 /**
  * 用户类型表

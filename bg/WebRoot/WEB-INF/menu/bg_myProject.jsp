@@ -11,7 +11,6 @@
 		<script type="text/javascript" src="<%=request.getContextPath()%>/resource/jqueryEasyUi/easyloader.js"></script>
 		<script src="<%=request.getContextPath()%>/resource/json2.js" type="text/javascript"></script>
 		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resource/style/page.css">
-		<script type="text/javascript" src="<%=request.getContextPath()%>/resource/autocomplete/jquery.autocomplete.js"></script>
 	<style type="text/css">
 		.datagrid-btable tr{height: 40px;}
 	</style>
@@ -99,7 +98,7 @@
 				        {field:'officeStart',title:'报馆开始日期',width:180,align:'center',formatter:formatterTxt},
 				        {field:'officeEnd',title:'报馆结束日期',width:180,align:'center',formatter:formatterTxt},
 				        {field:'creatorStr',title:'创建人',width:180,align:'center',formatter:formatterTxt},
-				        {field:'createTime',title:'创建时间',width:180,align:'center',formatter:formatterTxt},
+				        {field:'createTime',title:'创建时间',width:120,align:'center',formatter:formatterTxt},
 				        {field:'statusStr',title:'项目状态',width:160,align:'center',formatter:formatterStatus}
    				 	]],
    				 	url:'./menu!myProjectlist.ht'
@@ -297,7 +296,7 @@
 					columns:[[
 						{field:'id',checkbox:true,width:200,height:40},
 				        {field:'name',title:'项目名称',width:200,align:'center',formatter:formatterTxt},
-				        {field:'officeStart',title:'报馆开始日期',width:180,align:'center',formatter:formatterTxt},
+				        {field:'officeStart',title:'报馆开始日期',width:120,align:'center',formatter:formatterTxt},
 				        {field:'officeEnd',title:'报馆结束日期',width:180,align:'center',formatter:formatterTxt},
 				        {field:'creatorStr',title:'创建人',width:180,align:'center',formatter:formatterTxt},
 				        {field:'createTime',title:'创建时间',width:180,align:'center',formatter:formatterTxt},

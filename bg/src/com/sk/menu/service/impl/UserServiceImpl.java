@@ -1,5 +1,8 @@
 package com.sk.menu.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,4 +28,10 @@ public class UserServiceImpl implements UserService {
 	public User selectUserByNickNameAndPassword(User user){
 		return userMapper.selectUserByNickNameAndPassword(user);
 	}
+	@Override
+	public List<User> listSelect(@SuppressWarnings("rawtypes") Map map) {
+		// TODO Auto-generated method stub
+		return userMapper.listSelect(map);
+	}
+	
 }
