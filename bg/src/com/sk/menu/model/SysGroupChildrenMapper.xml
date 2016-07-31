@@ -9,7 +9,7 @@
     <result column="children_url" property="childrenUrl" jdbcType="VARCHAR" />
   </resultMap>
   
-  <select id="listChildrens" resultMap="BaseResultMap" parameterType="int">
-  	select * from sys_group_children where 1=1 and group_id=#{groupId}
+  <select id="listChildrens" resultMap="BaseResultMap" parameterType="sysGroupChildren">
+  	select * from sys_group_children where 1=1 and group_id=#{groupId} and children_kind like CONCAT('%','${childrenKind}','%' )
   </select>
 </mapper>

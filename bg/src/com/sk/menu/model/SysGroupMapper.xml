@@ -6,9 +6,10 @@
     <id column="group_id" property="groupId" jdbcType="INTEGER" />
     <result column="group_name" property="groupName" jdbcType="VARCHAR" />
     <result column="group_kind" property="groupKind" jdbcType="VARCHAR" />
-    <collection property="childrens" column="group_id" ofType="sysGroupChildren" select="com.sk.menu.model.SysGroupChildrenMapper.listChildrens"></collection>
+    <result column="kind_str" property="kind" jdbcType="VARCHAR" />
+    <collection property="childrens" column="{groupId=group_id,childrenKind=kind_str}"  ofType="sysGroupChildren" select="com.sk.menu.model.SysGroupChildrenMapper.listChildrens"></collection>
   </resultMap>
-  <select id="listGroup" resultMap="BaseResultMap" parameterType="java.util.Map">
-  	select * from sys_group where 1=1 and  group_kind like CONCAT('%','${kind}','%' ) 
+  <select id="listGroup" resultMap="BaseResultMap" parameterType="sysGroup">
+  	select group_id,group_name,group_kind,${kind} kind_str from sys_group where 1=1 and  group_kind like CONCAT('%','${kind}','%' ) 
   </select>
 </mapper>

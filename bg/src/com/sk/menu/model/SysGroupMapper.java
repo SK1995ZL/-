@@ -5,5 +5,5 @@ import java.util.Map;
 
 public interface SysGroupMapper {
    
-	public List<SysGroup> listGroup(Map map);
+	public List<SysGroup> listGroup(SysGroup sysGroup);
 }

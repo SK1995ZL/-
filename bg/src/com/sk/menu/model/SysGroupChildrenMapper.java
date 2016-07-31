@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface SysGroupChildrenMapper {
 	
-	public List<SysGroupChildren> listChildrens();
+	public List<SysGroupChildren> listChildrens(SysGroupChildren sysGroupChildren);
 }

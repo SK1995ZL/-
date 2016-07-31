@@ -18,9 +18,9 @@ public class SysGroupServiceImpl implements SysGroupService{
 	
 	@Override
 	@Transactional
-	public List<SysGroup> listGroup(Map map) {
+	public List<SysGroup> listGroup(SysGroup sysGroup) {
 		// TODO Auto-generated method stub
-		return sysGroupMapper.listGroup(map);
+		return sysGroupMapper.listGroup(sysGroup);
 	}
 
 }

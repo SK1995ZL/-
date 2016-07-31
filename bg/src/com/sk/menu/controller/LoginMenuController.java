@@ -28,14 +28,15 @@ public class LoginMenuController {
 	 * @param model
 	 * @return
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value="menu!layout",method=RequestMethod.GET)
 	public String layout(HttpServletRequest req,HttpServletResponse resp,Model model){
 		//获取登录的信息
 		User user=(User) req.getSession().getAttribute("user");
-		Map map=new HashMap();
-		map.put("kind", user.getKindId());
-		List<SysGroup> groups=sysGroupService.listGroup(map);
+		//Map map=new HashMap();
+		//map.put("kind", user.getKindId());
+		SysGroup sysGroup=new SysGroup();
+		sysGroup.setKind(String.valueOf(user.getKindId()));
+		List<SysGroup> groups=sysGroupService.listGroup(sysGroup);
 		String json=leftMenu(groups);
 		model.addAttribute("menus", json);
 		return "/menu/sys_main";

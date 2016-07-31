@@ -6,6 +6,7 @@ public class SysGroup {
     private Integer groupId;
     private String groupName;
     private String groupKind;
+    private String kind;
     private List<SysGroupChildren> childrens;
     
     public List<SysGroupChildren> getChildrens() {
@@ -32,4 +33,12 @@ public class SysGroup {
     public void setGroupKind(String groupKind) {
         this.groupKind = groupKind;
     }
+	public String getKind() {
+		return kind;
+	}
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+	
+    
 }
