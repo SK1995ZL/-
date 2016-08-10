@@ -35,6 +35,15 @@ public class Domain {
 		hashMap.put(String.valueOf(3), String.valueOf("业务员"));
 		return hashMap;
 	}
+	
+	public static String getPostJson(){
+		StringBuffer sb=new StringBuffer();
+		sb.append("[{\"id\":\""+String.valueOf(1)+"\",\"postName\":\"总经理\"},{\"id\":\"2\",\"postName\":\"经理\"},{\"id\":\"3\",\"postName\":\"业务员\"}]");
+		return sb.toString();
+	}
+	public static void main(String[] args) {
+		System.out.println(getPostJson());
+	}
 	/**
 	 * 草稿状态
 	 */

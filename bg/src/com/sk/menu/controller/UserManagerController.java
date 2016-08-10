@@ -4,17 +4,22 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.sk.menu.model.User;
 import com.sk.menu.model.UserKind;
 import com.sk.menu.service.UserKindService;
 import com.sk.menu.service.UserService;
+import com.sk.util.Base64;
 import com.sk.util.CheckUtil;
+import com.sk.util.Domain;
 /**
  * 账号管理
  * @author SK
@@ -124,4 +129,46 @@ public class UserManagerController {
 		sb.append("]");
 		return sb.toString();
 	}
+	
+	@RequestMapping(value="user-manager!new",method=RequestMethod.GET)
+	public String userManagerNew(){
+		return "/menu/user-manager-new";
+	}
+	/**
+	 * 职务combo
+	 * @param req
+	 * @param resp
+	 * @throws IOException
+	 */
+	@RequestMapping(value="user-manager!user-post-combo",method=RequestMethod.POST)
+	public void userManagerUserPostCombo(HttpServletRequest req,HttpServletResponse resp) throws IOException{
+		resp.setCharacterEncoding("utf-8");
+		resp.setContentType("text/html;charset=utf-8");
+		PrintWriter out=resp.getWriter();
+		out.print(Domain.getPostJson());
+		out.flush();
+		out.close();
+	}
+	@RequestMapping(value="user-manager!edit-new",method=RequestMethod.POST)
+	public void userManagerEditNew(User user,HttpServletRequest req,HttpServletResponse resp) throws IOException{
+		user.setPassword(Base64.encode(user.getPassword()));
+		boolean flag=userService.insert(user);
+		resp.setCharacterEncoding("utf-8");
+		resp.setContentType("text/html;charset=utf-8");
+		PrintWriter out=resp.getWriter();
+		if(flag){
+			out.print("success:保存成功");
+		}else{
+			out.print("failed:保存失败");
+		}
+		out.flush();
+		out.close();
+	}
+	/*System.out.println("nickname="+user.getNickname()+","
+	+ "password="+user.getPassword()+""
+	+ ",mobile="+user.getMobile()+""
+	+ ",kindId="+user.getKindId()+""
+	+ ",email="+user.getEmail()+""
+	+ ",post="+user.getPost()+""
+	+ ",mailingAddr="+user.getMailingAddr());*/
 }

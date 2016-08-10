@@ -145,5 +145,40 @@ $.extend($.fn.validatebox.defaults.rules, {
             return /^\1|2\d{3}-\d{1,2}-\d{1,2} \d{1,2}$/.test(value);
         },
         message: '清输入合适的日期格式  例如 2016-09-09 17'
+    },
+    ajaxUser:{  
+		validator:function(value, param) {
+            var m_result =$.ajax({ type: "POST",//http请求方式
+                 url: './setUp!nickname.ht',    //服务器段url地址
+                 data:{'nickname':value+''},      //发送给服务器段的数据
+                 dataType: "type", //告诉JQuery返回的数据格式
+                 async: false
+			}).responseText;
+			if (m_result >0) {
+				return false;
+			}
+			else {
+				return true;
+			}
+         },
+         message:'该用户名已有人注册'
+    },
+    minLength_new: {
+        validator: function (value, param) {
+            return value.length >= param[0];
+        },
+        message:'请输入至少8个字符.'
+    },
+    maxLength_new: {
+        validator: function (value, param) {
+            return value.length <= param[0];
+        },
+        message:'请输入小于20个字符.'
+    },
+    email:{
+    	 validator: function (value, param) {
+             return /^[a-zA-Z0-9_\.\-]+\@([a-zA-Z0-9\-]+\.)+[a-zA-Z0-9]{2,4}$/.test(value);
+         },
+         message:'* 请输入有效的邮件地址.'
     }
 }); 

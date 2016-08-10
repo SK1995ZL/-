@@ -28,10 +28,6 @@
                 <div style="float: left;">  
                     <a href="#" class="easyui-linkbutton" plain="true" onclick="toedit()" icon="icon-save">编辑</a>  
                 </div>  
-                <div class="datagrid-btn-separator"></div>  
-                <div style="float: left;">  
-                    <a href="#" class="easyui-linkbutton" plain="true" icon="icon-remove">删除</a>  
-                </div>  
                 <div id="tb" style="float: right;">  
                     <input id="ss" class="easyui-searchbox main_input"  prompt="请输入项目名称" style="width:500px; vertical-align: middle;"></input>
                 </div>  
@@ -153,7 +149,7 @@
                 	menu : '#mm',
                 	searcher: doSearchName
                 });  
-				function remove(){
+				/* function remove(){
 					var checkedItems = $('#myprojectIndex').datagrid('getChecked');
 					alert(JSON.stringify(checkedItems));
 					alert(checkedItems.length);
@@ -164,7 +160,7 @@
 						
 					}); 
 				}
-				
+				 */
 			});
 			function toAdd(){
 				$('#addMyProject').dialog('open');

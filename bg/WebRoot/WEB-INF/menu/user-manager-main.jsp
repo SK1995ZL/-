@@ -19,7 +19,7 @@
 			<div  id="user_mnager_index_toolbar" border="false"  
                 style="border-bottom: 1px solid #ddd; height: 32px; padding: 2px 5px; background: #fafafa;">  
                 <div style="float: left;">  
-                    <a href="#" class="easyui-linkbutton" plain="true" onclick="toAdd()" icon="icon-add">新增</a>  
+                    <a href="#" class="easyui-linkbutton" plain="true" onclick="user_manager_new()" icon="icon-add">新增</a>  
                 </div>  
                 <div class="datagrid-btn-separator"></div>  
                 <div style="float: left;">  
@@ -39,7 +39,17 @@
                 </div>  
             </div>
             <!-- 新增 -->
-            <div></div>
+            <div id="user_manager_new"></div>
+            <div id="user_manager_new_buttons">
+				<a href="javascript:void(0)" class="easyui-linkbutton" icon="icon-save"  onclick="javascript:user_manager_edit_new()">提交</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton" onclick="javascript:$('#user_manager_new').dialog('close')">Close</a>
+			</div>
+			<div  id="user_manager_new_toolbar" border="false"  
+                style="border-bottom: 1px solid #ddd; height: 32px; padding: 2px 5px; background: #fafafa;">  
+                <div style="float: left;">  
+                    <a href="#" class="easyui-linkbutton" plain="true" icon="icon-save" onclick="addSub()">提交</a>  
+                </div> 
+            </div> 
        </div>
        <script type="text/javascript">
        		function load(kindId){
@@ -80,11 +90,49 @@
 				textField:'name',
 				panelHeight:'auto'
 			});
+			function user_manager_new(){
+				$('#user_manager_new').dialog('open');
+			}
+			function user_manager_edit_new(){
+				$("#user_manager_new_form").form('submit',{
+					url:'./user-manager!edit-new.ht',
+			        onSubmit: function(){
+			            return $("#user_manager_new_form").form('validate');
+			        },
+			        success:function(data){
+			            data=data.split("ccess:")[1];
+			            $.messager.alert('SUCCESSFUL',data,'icon-ok');
+			            $('#user_manager_new').dialog('close');
+			            load('');
+			        }
+			    });
+			}
 			$("#search").click(function(){
 				load($('#user_manager_combobox').combobox('getValues'));
 			});
        		$(function(){
+       			//加载
        			load('');
+       			//new
+       			$('#user_manager_new').dialog({
+    				title: '添加会员',
+				    resizable:true,
+				    closed: true,
+				    cache: false,
+				    iconCls: 'icon-save',
+				    toolbar: '#user_manager_new_toolbar',
+					buttons: '#user_manager_new_buttons',
+					href:'./user-manager!new.ht',
+				    collapsible: true,
+	                minimizable: true,
+	                maximizable: true,
+	                resizable: true,
+	                width: 700,
+	                height: 400,
+	                left: 150,
+					top:50,
+				    modal: true
+				});
        		});
        </script>
 	</body>
